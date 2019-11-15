@@ -4,6 +4,10 @@ default character set utf8
 default collate utf8_general_ci;
 use tp2;
 
+-- Necessário para rejeitar o erro ONLY FULL GROUP BY
+set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+
 drop table incendios_brasil;
 
 create table incendios_brasil(
@@ -43,3 +47,4 @@ fields terminated by '\t' lines terminated by '\n' ignore 1 lines
 
 select * from incendios_estado where estado like '%Sul%';
 select * from incendios_estado where estado like 'Minas%';
+select estado, sum(numero) from incendios_estado group by estado;
