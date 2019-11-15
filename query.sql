@@ -16,7 +16,7 @@ create table incendios_brasil(
 ) default charset= utf8;
 show tables;
 
--- CAMINHO PARA INCENDIOS_BRASIL.CSV é o diretório no qual está o arquivo incendios_brasil.csv
+-- CAMINHO PARA INCENDIOS_BRASIL.CSV é o diretório no qual está o arquivo incendios_brasil.csv as barras invertidas precisam ser duplas
 load data local infile "CAMINHO PARA INCENDIOS_BRASIL.CSV" into table incendios_brasil 
 fields terminated by ';' lines terminated by '\n' ignore 1 lines
 (ano, mes, numero, @datevar) set periodo= str_to_date(@datevar, '%d/%m/%Y');
@@ -24,3 +24,22 @@ fields terminated by ';' lines terminated by '\n' ignore 1 lines
 select * from incendios_brasil;
 select * from incendios_brasil where numero> 100000 order by periodo;
 select * from incendios_brasil where ano= 2017;
+
+
+create table incendios_estado(
+	id integer auto_increment not null,
+    ano integer,
+    estado varchar(20),
+    mes varchar(8),
+    numero integer,
+    periodo date,
+    primary key (id)
+) default charset= utf8;
+show tables;
+
+load data local infile "CAMINHO PARA INCENDIOS_ESTADO.CSV" into table incendios_estado 
+fields terminated by '\t' lines terminated by '\n' ignore 1 lines
+(ano, estado, mes, numero, @datevar) set periodo= str_to_date(@datevar, '%d/%m/%Y');
+
+select * from incendios_estado where estado like '%Sul%';
+select * from incendios_estado where estado like 'Minas%';
