@@ -1,4 +1,4 @@
-drop schema tp2;
+-- drop schema tp2;
 create schema tp2
 default character set utf8
 default collate utf8_general_ci;
@@ -8,7 +8,7 @@ use tp2;
 set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 
-drop table incendios_brasil;
+-- drop table incendios_brasil;
 
 create table incendios_brasil(
 	id integer auto_increment not null,
@@ -30,6 +30,7 @@ select * from incendios_brasil where numero> 100000 order by periodo;
 select * from incendios_brasil where ano= 2017;
 
 
+-- drop table incendios_estado
 create table incendios_estado(
 	id integer auto_increment not null,
     ano integer,
