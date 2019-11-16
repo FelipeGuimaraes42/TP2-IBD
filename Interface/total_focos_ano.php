@@ -27,9 +27,7 @@
             DBClose($link);
         ?><br/>
         <div>
-            <button>
-                <a href="interface.php">Voltar</a>
-            </button>
+            <a href="interface.php" class="btn btn-aliceblue">Voltar</a>
         </div>
 </body>
 </html>

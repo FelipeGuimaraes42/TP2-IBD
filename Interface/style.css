@@ -15,17 +15,23 @@ table, th, tr{
     color: aliceblue;
     text-align: left;
 }
-button{
-    border: none;
-    background-color: aliceblue;
-    padding: 15px 32px;
-    font-size: 12pt;
-    border-radius: 8px;
+.btn{
+    font-family: arial;
+    font-size:14px;
+    font-weight:700;
     text-transform: uppercase;
-    display: inline-block;
-}
-a{
-    color: black;
+    border:none;
+    padding:10px;
+    cursor: pointer;
+    display:inline-block;
     text-decoration: none;
-    font-weight: bold;
+}
+.btn-aliceblue{
+    background:aliceblue;
+    color: black;
+    box-shadow:0 5px 0 aliceblue;
+}
+.btn-aliceblue:hover{
+  background: white;
+  box-shadow:0 5px 0 white;
 }
