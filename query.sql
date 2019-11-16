@@ -8,6 +8,32 @@ use tp2;
 set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 
+-- drop table estados;
+create table estados(
+	sigla char(2),
+    estado varchar(25),
+    primary key(sigla)
+)default charset= utf8;
+
+load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\estados.csv" into table estados
+fields terminated by ';' lines terminated by '\n' ignore 1 lines (sigla, estado);
+
+select estado from estados;
+select * from estados;
+
+-- drop table biomas;
+create table biomas(
+	id integer auto_increment,
+    bioma varchar(15),
+    primary key(id)
+)default charset= utf8;
+
+load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\biomas.csv" into table biomas
+fields terminated by ';' lines terminated by '\n' ignore 1 lines (bioma);
+
+select bioma from biomas;
+select * from biomas;
+
 -- drop table incendios_brasil;
 
 create table incendios_brasil(
@@ -31,7 +57,7 @@ select * from incendios_brasil where ano= 2017;
 select ano, sum(numero) as soma from incendios_brasil group by ano order by soma desc;
 
 
--- drop table incendios_estado
+-- drop table incendios_estado;
 create table incendios_estado(
 	id integer auto_increment not null,
     ano integer,
