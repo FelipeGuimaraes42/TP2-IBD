@@ -36,7 +36,7 @@ select * from biomas;
 
 -- drop table incendios_brasil;
 
-create table incendios_brasil(
+create table incendios_ano(
 	id integer auto_increment not null,
 	ano integer,
     mes varchar(8),
@@ -47,14 +47,14 @@ create table incendios_brasil(
 show tables;
 
 -- CAMINHO PARA INCENDIOS_BRASIL.CSV é o diretório no qual está o arquivo incendios_brasil.csv as barras invertidas precisam ser duplas
-load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_brasil.csv" into table incendios_brasil 
+load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_ano.csv" into table incendios_ano 
 fields terminated by ';' lines terminated by '\n' ignore 1 lines
 (ano, mes, numero, @datevar) set periodo= str_to_date(@datevar, '%d/%m/%Y');
 
-select * from incendios_brasil;
-select * from incendios_brasil where numero> 100000 order by periodo;
-select * from incendios_brasil where ano= 2017;
-select ano, sum(numero) as soma from incendios_brasil group by ano order by soma desc;
+select * from incendios_ano;
+select * from incendios_ano where numero> 100000 order by periodo;
+select * from incendios_ano where ano= 2017;
+select ano, sum(numero) as soma from incendios_ano group by ano order by soma desc;
 
 
 -- drop table incendios_estado;

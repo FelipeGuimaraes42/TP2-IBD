@@ -14,7 +14,7 @@
             require 'config.php';
             require 'connection.php';
             $link= DBConnect();
-            $sql= "select ano, sum(numero) as soma from incendios_brasil group by ano order by soma desc";
+            $sql= "select ano, sum(numero) as soma from incendios_ano group by ano order by soma desc";
             $result= $link->query($sql);
             if($result->num_rows > 0){
                 while($row= $result-> fetch_assoc()){
