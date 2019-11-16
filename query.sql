@@ -12,6 +12,8 @@ set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR
 create table estados(
 	sigla char(2),
     estado varchar(25),
+    regiao varchar(15),
+    foreign key (regiao) references regioes (id),
     primary key(sigla)
 )default charset= utf8;
 
@@ -20,6 +22,19 @@ fields terminated by ';' lines terminated by '\n' ignore 1 lines (sigla, estado)
 
 select estado from estados;
 select * from estados;
+
+-- drop table regiao
+create table regioes(
+	id integer auto_increment,
+    regiao varchar(15) not null,
+    primary key (id)
+)default charset= utf8;
+
+load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\regioes.csv" into table regioes
+fields terminated by ';' lines terminated by '\n' ignore 1 lines (regiao);
+
+select regiao from regioes;
+select * from regioes;
 
 -- drop table biomas;
 create table biomas(

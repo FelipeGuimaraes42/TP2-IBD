@@ -1,28 +1,28 @@
 Sigla;Estado
-AC;Acre
-AL;Alagoas
-AM;Amazonas
-AP;Amapá
-BA;Bahia
-CE;Ceará
-DF;Distrito Federal
-ES;Espírito Santo
-GO;Goiás
-MA;Maranhão
-MG;Minas Gerais
-MS;Mato Grosso do Sul
-MT;Mato Grosso
-PA;Pará
-PB;Paraíba
-PE;Pernambuco
-PI;Piauí
-PR;Paraná
-RJ;Rio de Janeiro
-RO;Rondônia
-RN;Rio Grande do Norte
-RR;Roraima
-RS;Rio Grande do Sul
-SC;Santa Catarina
-SE;Sergipe
-SP;São Paulo
-TO;Tocantins
+AC;Acre;3
+AL;Alagoas;2
+AM;Amazonas;3
+AP;Amapá;3
+BA;Bahia;2
+CE;Ceará;2
+DF;Distrito Federal;1
+ES;Espírito Santo;4
+GO;Goiás;1
+MA;Maranhão;2
+MG;Minas Gerais;4
+MS;Mato Grosso do Sul;1
+MT;Mato Grosso;1
+PA;Pará;3
+PB;Paraíba;2
+PE;Pernambuco;2
+PI;Piauí;2
+PR;Paraná;5
+RJ;Rio de Janeiro;4
+RO;Rondônia;3
+RN;Rio Grande do Norte;2
+RR;Roraima;3
+RS;Rio Grande do Sul;5
+SC;Santa Catarina;5
+SE;Sergipe;2
+SP;São Paulo;4
+TO;Tocantins;3
