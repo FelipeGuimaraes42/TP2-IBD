@@ -21,13 +21,14 @@ create table incendios_brasil(
 show tables;
 
 -- CAMINHO PARA INCENDIOS_BRASIL.CSV é o diretório no qual está o arquivo incendios_brasil.csv as barras invertidas precisam ser duplas
-load data local infile "CAMINHO PARA INCENDIOS_BRASIL.CSV" into table incendios_brasil 
+load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_brasil.csv" into table incendios_brasil 
 fields terminated by ';' lines terminated by '\n' ignore 1 lines
 (ano, mes, numero, @datevar) set periodo= str_to_date(@datevar, '%d/%m/%Y');
 
 select * from incendios_brasil;
 select * from incendios_brasil where numero> 100000 order by periodo;
 select * from incendios_brasil where ano= 2017;
+select ano, sum(numero) as soma from incendios_brasil group by ano order by soma desc;
 
 
 -- drop table incendios_estado
@@ -42,10 +43,10 @@ create table incendios_estado(
 ) default charset= utf8;
 show tables;
 
-load data local infile "CAMINHO PARA INCENDIOS_ESTADO.CSV" into table incendios_estado 
+load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_estado.csv" into table incendios_estado 
 fields terminated by '\t' lines terminated by '\n' ignore 1 lines
 (ano, estado, mes, numero, @datevar) set periodo= str_to_date(@datevar, '%d/%m/%Y');
 
 select * from incendios_estado where estado like '%Sul%';
 select * from incendios_estado where estado like 'Minas%';
-select estado, sum(numero) from incendios_estado group by estado;
+select estado, sum(numero) as soma from incendios_estado group by estado order by soma desc;
