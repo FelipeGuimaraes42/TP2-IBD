@@ -1,4 +1,4 @@
-<!DOCTYPE hmtl>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Total Focos Por Ano</title>
