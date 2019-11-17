@@ -85,7 +85,7 @@ fields terminated by ';' lines terminated by '\n' ignore 1 lines
 
 select * from incendios_ano;
 select * from incendios_ano where numero> 100000 order by periodo;
-select * from incendios_ano where ano= 2017;
+select * from incendios_ano where ano= 2004;
 select ano, sum(numero) as soma from incendios_ano group by ano order by soma desc;
 
 
@@ -106,6 +106,7 @@ load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_estado.csv" in
 fields terminated by '\t' lines terminated by '\n' ignore 1 lines
 (ano, sigla_estado, mes, numero, @datevar) set periodo= str_to_date(@datevar, '%d/%m/%Y');
 
+select * from incendios_estado;
 select * from incendios_estado where sigla_estado like '_S%';
 select * from incendios_estado where sigla_estado= 'MG';
 select sigla_estado, sum(numero) as soma from incendios_estado group by sigla_estado order by soma desc;

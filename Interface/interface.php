@@ -8,13 +8,13 @@
     <body>
         <h1>Queimadas no Brasil</h1>
         <div>
-            <a href="total_focos_estado.php" class="btn btn-aliceblue">Total Focos de Incêndios Por Estado</a>
-        </div><br/><br/>
-        <div>
             <a href="total_focos_ano.php" class="btn btn-aliceblue">Total Focos de Incêndios Por Ano</a>
         </div><br/><br/>
         <div>
             <a href="focos_bioma.php" class="btn btn-aliceblue">Total de Focos de Incêndios Por Bioma</a>
+        </div><br/><br/>
+        <div>
+            <a href="total_focos_estado.php" class="btn btn-aliceblue">Total Focos de Incêndios Por Estado</a>
         </div><br/><br/>
     </body>
 </html>
