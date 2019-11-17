@@ -113,4 +113,5 @@ select sigla_estado, sum(numero) as soma from incendios_estado group by sigla_es
 -- Consulta com Join
 select sum(numero) from incendios_estado;
 select estado, sum(numero) as soma from incendios_estado natural join estados group by sigla_estado order by soma desc;
-select bioma, sum(numero) focos from biomas natural join biomas_estados natural join incendios_estado group by bioma order by focos desc;
+select estado, bioma, numero from biomas natural join biomas_estados natural join estados natural join incendios_estado where numero>100;
+select bioma, sum(numero) focos from biomas natural join biomas_estados natural join estados natural join incendios_estado group by bioma order by focos desc;
