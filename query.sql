@@ -40,12 +40,23 @@ select * from estados;
 select estado, regiao from regioes natural join estados order by regiao, estado;
 
 -- drop table biomas;
+/*Tabela sem imagem salva
+	create table biomas(
+		id_bioma integer auto_increment,
+		bioma varchar(15),
+		primary key(id_bioma)
+	)default charset= utf8;
+*/
 create table biomas(
 	id_bioma integer auto_increment,
     bioma varchar(15),
+    img_bioma blob,
     primary key(id_bioma)
 )default charset= utf8;
 
+/*Os arquivos do tipo imagem foram adicionados no banco por meio do phpMyAdmin, pois pelo Workbench gerava um erro estranho de permissão
+insert into biomas(bioma, img_bioma) values ('teste', load_file("C:\wamp64\www\TP2-IBD\Interface\Images\amazonia.jpg"));
+select img_bioma into outfile "/out.jpg" from biomas where id_bioma=1; */
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\biomas.csv" into table biomas
 fields terminated by ';' lines terminated by '\n' ignore 1 lines (bioma);
 
