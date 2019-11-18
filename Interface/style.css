@@ -35,3 +35,8 @@ table, th, tr{
   background: white;
   box-shadow:0 5px 0 white;
 }
+figure{
+    font-size: 15pt;
+    color: aliceblue;
+    /*text-align: center;*/
+}

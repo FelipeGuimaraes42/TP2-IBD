@@ -8,6 +8,9 @@
     <body>
         <h1>Queimadas no Brasil</h1>
         <div>
+            <a href="imagens_biomas.php" class="btn btn-aliceblue">Imagens Salvas na Base de Dados</a>
+        </div><br/><br/>
+        <div>
             <a href="total_focos_ano.php" class="btn btn-aliceblue">Total Focos de Incêndios Por Ano</a>
         </div><br/><br/>
         <div>
