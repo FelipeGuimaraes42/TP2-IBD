@@ -1,5 +1,5 @@
 -- drop schema tp2;
-create schema tp2
+create schema if not exists tp2
 default character set utf8
 default collate utf8_general_ci;
 use tp2;
@@ -9,7 +9,7 @@ set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_
 set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 
 -- drop table regioes;
-create table IF NOT EXISTS regioes(
+create table if not exists regioes(
 	id_regiao integer auto_increment,
     regiao varchar(15) not null,
     primary key (id_regiao)
@@ -22,10 +22,10 @@ select regiao from regioes;
 select * from regioes;
 
 -- drop table estados;
-create table IF NOT EXISTS estados(
+create table if not exists estados(
 	sigla_estado char(2),
-    estado varchar(25),
-    id_regiao int,
+    estado varchar(25) not null,
+    id_regiao integer not null,
     foreign key (id_regiao) references regioes (id_regiao),
     primary key(sigla_estado)
 )default charset= utf8;
@@ -47,9 +47,9 @@ select estado, regiao from regioes natural join estados order by regiao, estado;
 		primary key(id_bioma)
 	)default charset= utf8;
 */
-create table IF NOT EXISTS biomas(
+create table if not exists biomas(
 	id_bioma integer auto_increment,
-    bioma varchar(15),
+    bioma varchar(15) not null,
     img_bioma blob,
     primary key(id_bioma)
 )default charset= utf8;
@@ -73,9 +73,9 @@ select bioma from biomas;
 select * from biomas;
 
 -- drop table biomas_estados;
-create table IF NOT EXISTS biomas_estados(
+create table if not exists biomas_estados(
 	sigla_estado char(2),
-    id_bioma int,
+    id_bioma integer,
     primary key (sigla_estado, id_bioma),
     foreign key (sigla_estado) references estados(sigla_estado),
     foreign key (id_bioma) references biomas(id_bioma)
@@ -89,7 +89,7 @@ select * from biomas natural join biomas_estados natural join estados;
 select estado, bioma from biomas natural join biomas_estados natural join estados;
 
 -- drop table incendios_brasil;
-create table IF NOT EXISTS incendios_ano(
+create table if not exists incendios_ano(
 	id integer auto_increment not null,
 	ano integer,
     mes varchar(8),
@@ -110,7 +110,7 @@ select ano, sum(numero) as soma from incendios_ano group by ano order by soma de
 
 
 -- drop table incendios_estado;
-create table IF NOT EXISTS incendios_estado(
+create table if not exists incendios_estado(
 	id integer auto_increment not null,
     ano integer,
     sigla_estado varchar(20),
