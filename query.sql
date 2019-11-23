@@ -9,7 +9,7 @@ set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_
 set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 
 -- drop table regioes;
-create table regioes(
+create table IF NOT EXISTS regioes(
 	id_regiao integer auto_increment,
     regiao varchar(15) not null,
     primary key (id_regiao)
@@ -22,7 +22,7 @@ select regiao from regioes;
 select * from regioes;
 
 -- drop table estados;
-create table estados(
+create table IF NOT EXISTS estados(
 	sigla_estado char(2),
     estado varchar(25),
     id_regiao int,
@@ -47,7 +47,7 @@ select estado, regiao from regioes natural join estados order by regiao, estado;
 		primary key(id_bioma)
 	)default charset= utf8;
 */
-create table biomas(
+create table IF NOT EXISTS biomas(
 	id_bioma integer auto_increment,
     bioma varchar(15),
     img_bioma blob,
@@ -73,7 +73,7 @@ select bioma from biomas;
 select * from biomas;
 
 -- drop table biomas_estados;
-create table biomas_estados(
+create table IF NOT EXISTS biomas_estados(
 	sigla_estado char(2),
     id_bioma int,
     primary key (sigla_estado, id_bioma),
@@ -89,7 +89,7 @@ select * from biomas natural join biomas_estados natural join estados;
 select estado, bioma from biomas natural join biomas_estados natural join estados;
 
 -- drop table incendios_brasil;
-create table incendios_ano(
+create table IF NOT EXISTS incendios_ano(
 	id integer auto_increment not null,
 	ano integer,
     mes varchar(8),
@@ -110,7 +110,7 @@ select ano, sum(numero) as soma from incendios_ano group by ano order by soma de
 
 
 -- drop table incendios_estado;
-create table incendios_estado(
+create table IF NOT EXISTS incendios_estado(
 	id integer auto_increment not null,
     ano integer,
     sigla_estado varchar(20),
