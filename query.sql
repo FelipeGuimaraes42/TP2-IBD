@@ -24,10 +24,10 @@ select * from regioes;
 -- drop table estados;
 create table if not exists estados(
 	sigla_estado char(2),
-    estado varchar(25) not null,
-    id_regiao integer not null,
+    estado varchar(25),
+    id_regiao integer,
     foreign key (id_regiao) references regioes (id_regiao),
-    primary key(sigla_estado)
+    primary key (sigla_estado)
 )default charset= utf8;
 
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\estados.csv" into table estados
@@ -49,7 +49,7 @@ select estado, regiao from regioes natural join estados order by regiao, estado;
 */
 create table if not exists biomas(
 	id_bioma integer auto_increment,
-    bioma varchar(15) not null,
+    bioma varchar(15),
     img_bioma blob,
     primary key(id_bioma)
 )default charset= utf8;
@@ -90,12 +90,12 @@ select estado, bioma from biomas natural join biomas_estados natural join estado
 
 -- drop table incendios_brasil;
 create table if not exists incendios_ano(
-	id integer auto_increment not null,
+	id_inc_ano integer auto_increment not null,
 	ano integer,
     mes varchar(8),
-    numero int,
+    numero integer,
     periodo date,
-    primary key(id)
+    primary key(id_inc_ano)
 ) default charset= utf8;
 
 -- CAMINHO PARA INCENDIOS_BRASIL.CSV é o diretório no qual está o arquivo incendios_brasil.csv as barras invertidas precisam ser duplas
@@ -111,14 +111,14 @@ select ano, sum(numero) as soma from incendios_ano group by ano order by soma de
 
 -- drop table incendios_estado;
 create table if not exists incendios_estado(
-	id integer auto_increment not null,
+	id_inc_est integer auto_increment not null,
     ano integer,
     sigla_estado varchar(20),
     mes varchar(8),
     numero integer,
     periodo date,
     foreign key (sigla_estado) references estados(sigla_estado),
-    primary key (id)
+    primary key (id_inc_est)
 ) default charset= utf8;
 show tables;
 
