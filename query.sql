@@ -95,15 +95,14 @@ create table if not exists incendios_ano(
 	ano integer not null,
     mes varchar(9) not null,
     numero integer not null,
-    periodo date not null,
     primary key (id_inc_ano)
 ) default charset= utf8;
 
 -- CAMINHO PARA INCENDIOS_BRASIL.CSV é o diretório no qual está o arquivo incendios_brasil.csv as barras invertidas precisam ser duplas
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_ano.csv" into table incendios_ano 
-fields terminated by ';' lines terminated by '\n' ignore 1 lines 
-(ano, mes, numero, @datevar) set periodo= str_to_date(@datevar, '%d/%m/%Y');
+fields terminated by ';' lines terminated by '\n' ignore 1 lines (ano, mes, numero);
 
+select sum(numero) from incendios_ano;
 select * from incendios_ano;
 select * from incendios_ano where numero> 100000 order by periodo;
 select * from incendios_ano where ano= 2004;
@@ -117,15 +116,13 @@ create table if not exists incendios_estado(
     sigla_estado varchar(2) not null,
     mes varchar(9) not null,
     numero integer not null,
-    periodo date not null,
     foreign key (sigla_estado) references estados(sigla_estado),
     primary key (id_inc_est)
 ) default charset= utf8;
 show tables;
 
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_estado.csv" into table incendios_estado 
-fields terminated by '\t' lines terminated by '\n' ignore 1 lines 
-(ano, sigla_estado, mes, numero, @datevar) set periodo= str_to_date(@datevar, '%d/%m/%Y');
+fields terminated by '\t' lines terminated by '\n' ignore 1 lines (ano, sigla_estado, mes, numero);
 
 select * from incendios_estado;
 select * from incendios_estado where sigla_estado like '_S%';
