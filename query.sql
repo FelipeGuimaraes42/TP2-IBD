@@ -89,7 +89,7 @@ select * from biomas_estados;
 select * from biomas natural join biomas_estados natural join estados;
 select estado, bioma from biomas natural join biomas_estados natural join estados;
 
--- drop table incendios_brasil;
+-- drop table incendios_ano;
 create table if not exists incendios_ano(
 	id_inc_ano integer auto_increment,
 	ano integer not null,
@@ -100,7 +100,7 @@ create table if not exists incendios_ano(
 
 -- CAMINHO PARA INCENDIOS_BRASIL.CSV é o diretório no qual está o arquivo incendios_brasil.csv as barras invertidas precisam ser duplas
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_ano.csv" into table incendios_ano 
-fields terminated by ';' lines terminated by '\n' ignore 1 lines (ano, mes, numero);
+fields terminated by ';' lines terminated by ';\n' ignore 1 lines (ano, mes, numero);
 
 select sum(numero) from incendios_ano;
 select * from incendios_ano;
@@ -122,7 +122,7 @@ create table if not exists incendios_estado(
 show tables;
 
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_estado.csv" into table incendios_estado 
-fields terminated by '\t' lines terminated by '\n' ignore 1 lines (ano, sigla_estado, mes, numero);
+fields terminated by '\t' lines terminated by '\t\n' ignore 1 lines (ano, sigla_estado, mes, numero);
 
 select * from incendios_estado;
 select * from incendios_estado where sigla_estado like '_S%';
