@@ -131,7 +131,8 @@ select sigla_estado, sum(numero) as soma from incendios_estado group by sigla_es
 select sum(numero) from incendios_estado;
 select estado, sum(numero) as soma from incendios_estado natural join estados group by sigla_estado order by soma desc;
 select estado, bioma, numero from biomas natural join biomas_estados natural join estados natural join incendios_estado where numero>100;
-select bioma, sum(numero) focos from biomas natural join biomas_estados natural join estados natural join incendios_estado group by bioma order by focos desc;
+select bioma, sum(numero) focos from biomas natural join biomas_estados natural join estados natural join incendios_estado 
+	group by bioma order by focos desc;
 
 -- Quantidade de estados que contem o Bioma X:
 select bioma, count(id_bioma) as estados_presentes from biomas_estados natural join biomas group by id_bioma order by estados_presentes desc;
@@ -150,10 +151,13 @@ select ano, sum(numero) as numero_de_incendios from incendios_estado group by an
 select ano, sum(numero) as numero_de_incendios from incendios_estado where numero <> 0 group by ano order by numero_de_incendios desc;
 
 -- Dado um Bioma, determinar o número de focos de incendios ocorridos naquele Bioma, no período de 1998 à 2017;
-SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_estados NATURAL JOIN estados NATURAL JOIN incendios_estado GROUP BY bioma ORDER BY total_incendios;
+SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_estados NATURAL JOIN estados NATURAL JOIN incendios_estado 
+GROUP BY bioma ORDER BY total_incendios;
 
--- Consulta Relatório - Número de incêndios ocorridos no estado do Amazonas em um período de 10 anos (2000-2009), agrupados por ano, ordenados por número de incêndios:
-SELECT estado, ano, SUM(numero) AS numero_de_incendios FROM estados NATURAL JOIN incendios_estado WHERE (ano >= "2000" AND ano <= "2009") AND estado = "Amazonas" GROUP BY ano ORDER BY numero_de_incendios DESC;
+/*Consulta Relatório - Número de incêndios ocorridos no estado do Amazonas em um período de 10 anos (2000-2009), 
+agrupados por ano, ordenados por número de incêndios:*/
+SELECT estado, ano, SUM(numero) AS numero_de_incendios FROM estados NATURAL JOIN incendios_estado 
+WHERE (ano >= "2000" AND ano <= "2009") AND estado = "Amazonas" GROUP BY ano ORDER BY numero_de_incendios DESC;
 
 -- Consulta Relatório - Biomas associados com suas respectivas média de incêncio anual e desvio padrão de incêncios anual
 select bioma, avg(total_anual) as media_anual, std(total_anual) as dev_pad_anual
@@ -167,4 +171,5 @@ select bioma, avg(total_anual) as media_anual, std(total_anual) as dev_pad_anual
     group by bioma order by media_anual desc;
     
 -- Retorna a soma dos incêndios do ano em que ocorreu o maior número de incêndios, por estado
-select ano, sigla_estado, sum(numero) from incendios_estado where ano = (select ano from incendios_estado group by ano having sum(numero) = (select sum(numero) as soma from incendios_estado group by ano order by soma desc limit 1)) group by sigla_estado;
+select ano, sigla_estado, sum(numero) from incendios_estado where ano = (select ano from incendios_estado group by ano 
+having sum(numero) = (select sum(numero) as soma from incendios_estado group by ano order by soma desc limit 1)) group by sigla_estado;

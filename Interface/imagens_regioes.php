@@ -8,7 +8,7 @@
 ?>
 <HTML>
 <HEAD>
-    <TITLE>List BLOB Images</TITLE>
+    <TITLE>Mapas das Regiões</TITLE>
     <link href="style.css" rel="stylesheet" type="text/css" />
 </HEAD>
 <BODY>

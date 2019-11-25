@@ -8,11 +8,11 @@
 ?>
 <HTML>
 <HEAD>
-    <TITLE>List BLOB Images</TITLE>
+    <TITLE>Mapas dos Biomas</TITLE>
     <link href="style.css" rel="stylesheet" type="text/css" />
 </HEAD>
 <BODY>
-    <h1>Imagens Salvas no Banco</H1>
+    <h1>Imagens dos Biomas</H1>
     <?php
         while($row = mysqli_fetch_array($result)) {
     ?>

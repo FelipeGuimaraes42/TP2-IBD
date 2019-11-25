@@ -8,7 +8,7 @@
     <body>
         <h1>Queimadas no Brasil</h1>
         <div>
-            <a href="imagens_biomas.php" class="btn btn-aliceblue">Imagens Salvas na Base de Dados</a>
+            <a href="imagens_biomas.php" class="btn btn-aliceblue">Imagens dos Biomas</a>
         </div><br/><br/>
 				<div>
             <a href="imagens_regioes.php" class="btn btn-aliceblue">Imagens das Regiões</a>
