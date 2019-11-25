@@ -17,7 +17,7 @@
         while($row = mysqli_fetch_array($result)) {
     ?>
         <figure>
-            <img src="imageView.php?id_bioma=<?php echo $row["id_bioma"]; ?>" width=300pt height=300pt/>
+            <img src="imageViewBiomas.php?id_bioma=<?php echo $row["id_bioma"]; ?>" width=300pt height=300pt/>
             <figcaption>Mapa do bioma <?php echo $row["bioma"];?></figcaption>
         </figure>
         
