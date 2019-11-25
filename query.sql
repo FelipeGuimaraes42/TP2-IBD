@@ -3,7 +3,6 @@ create schema if not exists tp2
 default character set utf8
 default collate utf8_general_ci;
 use tp2;
-show tables;
 
 -- Necessário para rejeitar o erro ONLY FULL GROUP BY
 set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
@@ -23,7 +22,7 @@ create table if not exists regioes(
 
 -- Armazena os dados referentes às regiões, salvos em um arquivo CSV, na tabela regiões
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\regioes.csv" into table regioes 
-lines terminated by '\n' ignore 1 lines (regiao);
+fields terminated by ';' lines terminated by '\n' ignore 1 lines (regiao);
 
 -- Cinco regioes ao total, atributo alterado de acordo com o arquivo .csv, isto e,
 -- em ordem alfabetica. Os mesmos problemas de inserção de imagens no banco de dados
@@ -107,7 +106,6 @@ fields terminated by ';' lines terminated by '\n' ignore 1 lines (sigla_estado, 
 select * from biomas_estados;
 select * from biomas natural join biomas_estados natural join estados;
 select estado, bioma from biomas natural join biomas_estados natural join estados;
-select estado, bioma from biomas natural join biomas_estados natural join estados where bioma like 'Am%';
 
 -- drop table incendios_ano;--Cria a tabela com os dados dos incêndios no Brasil no período de 1997
 create table if not exists incendios_ano(
@@ -140,6 +138,7 @@ create table if not exists incendios_estado(
     foreign key (sigla_estado) references estados(sigla_estado),
     primary key (id_inc_est)
 ) default charset= utf8;
+show tables;
 
 -- Insere os dados salvos no CSV relativo aos incendios em cada estado estados na tabela incendios_estado
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_estado.csv" into table incendios_estado 
@@ -148,12 +147,21 @@ fields terminated by '\t' lines terminated by '\t\n' ignore 1 lines (ano, sigla_
 -- Consultas testes para a tabela incendios_estado
 select * from incendios_estado;
 select * from incendios_estado where sigla_estado like '_S%';
-select * from incendios_estado where sigla_estado= 'AC';
-select sum(numero) from incendios_estado where sigla_estado like 'AC';
-select estado, sum(numero) as soma from incendios_estado natural join estados group by sigla_estado order by soma desc;
+select * from incendios_estado where sigla_estado= 'MG';
 select sigla_estado, sum(numero) as soma from incendios_estado group by sigla_estado order by soma desc;
 select sum(numero) from incendios_estado;
-select sigla_estado, sum(numero) as soma from incendios_estado natural join estados where sigla_estado like 'AC';
+select estado, sum(numero) as soma from incendios_estado natural join estados group by sigla_estado order by soma desc;
 select estado, bioma, numero from biomas natural join biomas_estados natural join estados natural join incendios_estado where numero>100;
-select sum(numero) from biomas natural join biomas_estados natural join estados natural join incendios_estado where bioma like 'cerrado%';
 select bioma, sum(numero) focos from biomas natural join biomas_estados natural join estados natural join incendios_estado group by bioma order by focos desc;
+
+-- Quantidade de estados que contem o Bioma X:
+select bioma, count(id_bioma) as estados_presentes from biomas_estados natural join biomas group by id_bioma order by estados_presentes desc;
+
+-- Soma do número de incêndios em cada mês entre os anos de 1998 e 2017:
+select mes, sum(numero) as numero_de_incendios from incendios_ano group by mes order by numero_de_incendios desc;
+
+-- Dado um Bioma, determinar o número de focos de incendios ocorridos naquele Bioma, no período de 1998 à 2017;
+SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_estados NATURAL JOIN estados NATURAL JOIN incendios_estado GROUP BY bioma ORDER BY total_incendios;
+
+-- Consulta Relatório - Número de incêndios ocorridos no estado do Amazonas em um período de 10 anos (2000-2009), agrupados por ano, ordenados por número de incêndios:
+SELECT estado, ano, SUM(numero) AS numero_de_incendios FROM estados NATURAL JOIN incendios_estado WHERE (ano >= "2000" AND ano <= "2009") AND estado = "Amazonas" GROUP BY ano ORDER BY numero_de_incendios DESC;
