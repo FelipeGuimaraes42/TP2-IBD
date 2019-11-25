@@ -135,12 +135,19 @@ select bioma, sum(numero) focos from biomas natural join biomas_estados natural 
 
 -- Quantidade de estados que contem o Bioma X:
 select bioma, count(id_bioma) as estados_presentes from biomas_estados natural join biomas group by id_bioma order by estados_presentes desc;
+select biomas.bioma, count(biomas.id_bioma) as estados_presentes
+	from biomas_estados, biomas
+    where biomas.id_bioma = biomas_estados.id_bioma
+    group by biomas.id_bioma
+    order by estados_presentes desc;
 
 -- Soma do número de incêndios em cada mês entre os anos de 1998 e 2017:
 select mes, sum(numero) as numero_de_incendios from incendios_estado group by mes order by numero_de_incendios desc;
+select mes, sum(numero) as numero_de_incendios from incendios_estado where numero > 0 group by mes order by numero_de_incendios desc;
 
 -- Soma do número de incêndios por cada ano no período de 1998 até 2017:
 select ano, sum(numero) as numero_de_incendios from incendios_estado group by ano order by numero_de_incendios desc;
+select ano, sum(numero) as numero_de_incendios from incendios_estado where numero <> 0 group by ano order by numero_de_incendios desc;
 
 -- Dado um Bioma, determinar o número de focos de incendios ocorridos naquele Bioma, no período de 1998 à 2017;
 SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_estados NATURAL JOIN estados NATURAL JOIN incendios_estado GROUP BY bioma ORDER BY total_incendios;
@@ -149,7 +156,12 @@ SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_est
 SELECT estado, ano, SUM(numero) AS numero_de_incendios FROM estados NATURAL JOIN incendios_estado WHERE (ano >= "2000" AND ano <= "2009") AND estado = "Amazonas" GROUP BY ano ORDER BY numero_de_incendios DESC;
 
 -- Consulta Relatório - Biomas associados com suas respectivas média de incêncio anual e desvio padrão de incêncios anual
-
 select bioma, avg(total_anual) as media_anual, std(total_anual) as dev_pad_anual
-	from (select bioma, sum(numero) as total_anual from biomas natural join biomas_estados 
-    natural join incendios_estado group by bioma, ano) as agp_anual group by bioma order by media_anual desc;
+	from (
+		select bioma, sum(numero) as total_anual
+        from (
+			select id_bioma, bioma from biomas
+		)
+		natural join biomas_estados natural join incendios_estado group by bioma, ano
+	) as agp_anual
+    group by bioma order by media_anual desc;
