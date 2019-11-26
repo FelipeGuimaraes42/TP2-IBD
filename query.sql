@@ -184,7 +184,7 @@ select bioma, avg(total_anual) as media_anual, std(total_anual) as dev_pad_anual
 		select bioma, sum(numero) as total_anual
         from (
 			select id_bioma, bioma from biomas
-		)
+		) as biomas
 		natural join biomas_estados natural join incendios group by bioma, ano
 	) as agp_anual
     group by bioma order by media_anual desc;
