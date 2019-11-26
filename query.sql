@@ -194,3 +194,7 @@ select bioma, ano, round(variance(numero), 2) as variancia from biomas natural j
 
 -- 5 estados com maior média de queimadas
 select estado, round(avg(numero), 2) as media from estados natural join incendios group by estado order by media desc limit 5;
+
+-- Consutla do tipo 4, envolvendo funções de agregação sobre o resultado da junção de duas ou mais relações
+-- Anos no qual a região norte teve um número de queimadas maior do que sua média total de queimadas entre 1998 e 2017:
+SELECT regiao, ano, numero FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE regiao = "Norte" AND numero > (SELECT AVG(numero) FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE regiao = "Norte") GROUP BY ano ORDER BY ano;
