@@ -119,8 +119,8 @@ create table if not exists incendios(
 ) default charset= utf8;
 
 -- Insere os dados salvos no CSV relativo aos incendios em cada estado estados na tabela incendios
-load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios.csv" into table incendios 
-fields terminated by '\t' lines terminated by '\t\n' ignore 1 lines (ano, sigla_estado, mes, numero);
+/* load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios.csv" into table incendios 
+fields terminated by '\t' lines terminated by '\t\n' ignore 1 lines (ano, sigla_estado, mes, numero); */
 -- Novo CSV, talvez funcione melhor
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios2.csv" into table incendios 
 fields terminated by '\;' lines terminated by '\n' ignore 1 lines (ano, sigla_estado, mes, numero);
@@ -188,3 +188,9 @@ select bioma, avg(total_anual) as media_anual, std(total_anual) as dev_pad_anual
 		natural join biomas_estados natural join incendios group by bioma, ano
 	) as agp_anual
     group by bioma order by media_anual desc;
+
+-- Variância do número de queimadas por ano no bioma Cerrado
+select bioma, ano, round(variance(numero), 2) as variancia from biomas natural join biomas_estados natural join estados natural join incendios where id_bioma = 3 group by ano;
+
+-- 5 estados com maior média de queimadas
+select estado, round(avg(numero), 2) as media from estados natural join incendios group by estado order by media desc limit 5;
