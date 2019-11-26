@@ -173,8 +173,8 @@ select bioma, avg(total_anual) as media_anual, std(total_anual) as dev_pad_anual
     group by bioma order by media_anual desc;
     
 -- Retorna a soma dos incêndios do ano em que ocorreu o maior número de incêndios, por estado
-select ano, sigla_estado, sum(numero) from incendios where ano = (select ano from incendios group by ano 
-having sum(numero) = (select sum(numero) as soma from incendios group by ano order by soma desc limit 1)) group by sigla_estado;
+select ano, estado, sum(numero) from incendios natural join estados where ano = (select ano from incendios group by ano 
+having sum(numero) = (select sum(numero) as soma from incendios group by ano order by soma desc limit 1)) group by estado;
 
 -- Total de focos de incêndio de cada região
 select regiao, sum(numero) as c from estados natural join regioes natural join biomas_estados natural join biomas natural join incendios group by regiao order by c desc;
