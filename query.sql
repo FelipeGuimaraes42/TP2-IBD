@@ -148,14 +148,14 @@ select ano, sum(numero) as numero_de_incendios from incendios where numero <> 0 
 
 -- Consultas envolvendo a junção de duas relações - 3
 
--- Dado um Bioma, determinar o número de focos de incendios ocorridos naquele Bioma, no período de 1998 à 2017;
-SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_estados NATURAL JOIN estados NATURAL JOIN incendios 
-GROUP BY bioma ORDER BY total_incendios;
-    
 -- Consultas envolvendo a junção de três ou mais relações - 3
 
 -- Total de focos de incêndio de cada região
 select regiao, sum(numero) as c from estados natural join regioes natural join biomas_estados natural join biomas natural join incendios group by regiao order by c desc;
+
+-- Dado um Bioma, determinar o número de focos de incendios ocorridos naquele Bioma, no período de 1998 à 2017;
+SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_estados NATURAL JOIN estados NATURAL JOIN incendios 
+GROUP BY bioma ORDER BY total_incendios;
 
 -- Consultas envolvendo funções de agregação sobre o resultado da junção de duas ou mais relações - 2
 
