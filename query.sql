@@ -121,6 +121,9 @@ create table if not exists incendios(
 -- Insere os dados salvos no CSV relativo aos incendios em cada estado estados na tabela incendios
 load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios.csv" into table incendios 
 fields terminated by '\t' lines terminated by '\t\n' ignore 1 lines (ano, sigla_estado, mes, numero);
+-- Novo CSV, talvez funcione melhor
+load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios2.csv" into table incendios 
+fields terminated by '\;' lines terminated by '\n' ignore 1 lines (ano, sigla_estado, mes, numero);
 
 -- Consultas testes para a tabela incendios
 select * from incendios;
