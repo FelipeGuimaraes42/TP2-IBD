@@ -15,7 +15,7 @@
             require 'config.php';
             require 'connection.php';
             $link= DBConnect();
-            $sql= "select ano, sum(numero) as numero_de_incendios from incendios_estado group by ano order by numero_de_incendios desc;";
+            $sql= "select ano, sum(numero) as numero_de_incendios from incendios group by ano order by numero_de_incendios desc;";
             $result= $link->query($sql);
             if($result->num_rows > 0){
                 while($row= $result-> fetch_assoc()){

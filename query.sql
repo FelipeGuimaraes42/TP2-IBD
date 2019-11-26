@@ -107,8 +107,8 @@ select * from biomas_estados;
 select * from biomas natural join biomas_estados natural join estados;
 select estado, bioma from biomas natural join biomas_estados natural join estados;
 
--- drop table incendios_estado;-- Cria a tabela que armazena os incêndios em cada estado
-create table if not exists incendios_estado(
+-- drop table incendios;-- Cria a tabela que armazena os incêndios em cada estado
+create table if not exists incendios(
 	id_inc_est integer auto_increment not null,
     ano integer not null,
     sigla_estado varchar(2) not null,
@@ -117,21 +117,20 @@ create table if not exists incendios_estado(
     foreign key (sigla_estado) references estados(sigla_estado),
     primary key (id_inc_est)
 ) default charset= utf8;
-show tables;
 
--- Insere os dados salvos no CSV relativo aos incendios em cada estado estados na tabela incendios_estado
-load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios_estado.csv" into table incendios_estado 
+-- Insere os dados salvos no CSV relativo aos incendios em cada estado estados na tabela incendios
+load data local infile "C:\\wamp64\\www\\TP2-IBD\\CSVs\\incendios.csv" into table incendios 
 fields terminated by '\t' lines terminated by '\t\n' ignore 1 lines (ano, sigla_estado, mes, numero);
 
--- Consultas testes para a tabela incendios_estado
-select * from incendios_estado;
-select * from incendios_estado where sigla_estado like '_S%';
-select * from incendios_estado where sigla_estado= 'MG';
-select sigla_estado, sum(numero) as soma from incendios_estado group by sigla_estado order by soma desc;
-select sum(numero) from incendios_estado;
-select estado, sum(numero) as soma from incendios_estado natural join estados group by sigla_estado order by soma desc;
-select estado, bioma, numero from biomas natural join biomas_estados natural join estados natural join incendios_estado where numero>100;
-select bioma, sum(numero) focos from biomas natural join biomas_estados natural join estados natural join incendios_estado 
+-- Consultas testes para a tabela incendios
+select * from incendios;
+select * from incendios where sigla_estado like '_S%';
+select * from incendios where sigla_estado= 'MG';
+select sigla_estado, sum(numero) as soma from incendios group by sigla_estado order by soma desc;
+select sum(numero) from incendios;
+select estado, sum(numero) as soma from incendios natural join estados group by sigla_estado order by soma desc;
+select estado, bioma, numero from biomas natural join biomas_estados natural join estados natural join incendios where numero>100;
+select bioma, sum(numero) focos from biomas natural join biomas_estados natural join estados natural join incendios 
 	group by bioma order by focos desc;
 
 -- Quantidade de estados que contem o Bioma X:
@@ -143,20 +142,20 @@ select biomas.bioma, count(biomas.id_bioma) as estados_presentes
     order by estados_presentes desc;
 
 -- Soma do número de incêndios em cada mês entre os anos de 1998 e 2017:
-select mes, sum(numero) as numero_de_incendios from incendios_estado group by mes order by numero_de_incendios desc;
-select mes, sum(numero) as numero_de_incendios from incendios_estado where numero > 0 group by mes order by numero_de_incendios desc;
+select mes, sum(numero) as numero_de_incendios from incendios group by mes order by numero_de_incendios desc;
+select mes, sum(numero) as numero_de_incendios from incendios where numero > 0 group by mes order by numero_de_incendios desc;
 
 -- Soma do número de incêndios por cada ano no período de 1998 até 2017:
-select ano, sum(numero) as numero_de_incendios from incendios_estado group by ano order by numero_de_incendios desc;
-select ano, sum(numero) as numero_de_incendios from incendios_estado where numero <> 0 group by ano order by numero_de_incendios desc;
+select ano, sum(numero) as numero_de_incendios from incendios group by ano order by numero_de_incendios desc;
+select ano, sum(numero) as numero_de_incendios from incendios where numero <> 0 group by ano order by numero_de_incendios desc;
 
 -- Dado um Bioma, determinar o número de focos de incendios ocorridos naquele Bioma, no período de 1998 à 2017;
-SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_estados NATURAL JOIN estados NATURAL JOIN incendios_estado 
+SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_estados NATURAL JOIN estados NATURAL JOIN incendios 
 GROUP BY bioma ORDER BY total_incendios;
 
 /*Consulta Relatório - Número de incêndios ocorridos no estado do Amazonas em um período de 10 anos (2000-2009), 
 agrupados por ano, ordenados por número de incêndios:*/
-SELECT estado, ano, SUM(numero) AS numero_de_incendios FROM estados NATURAL JOIN incendios_estado 
+SELECT estado, ano, SUM(numero) AS numero_de_incendios FROM estados NATURAL JOIN incendios 
 WHERE (ano >= "2000" AND ano <= "2009") AND estado = "Amazonas" GROUP BY ano ORDER BY numero_de_incendios DESC;
 
 -- Consulta Relatório - Biomas associados com suas respectivas média de incêncio anual e desvio padrão de incêncios anual
@@ -166,10 +165,10 @@ select bioma, avg(total_anual) as media_anual, std(total_anual) as dev_pad_anual
         from (
 			select id_bioma, bioma from biomas
 		)
-		natural join biomas_estados natural join incendios_estado group by bioma, ano
+		natural join biomas_estados natural join incendios group by bioma, ano
 	) as agp_anual
     group by bioma order by media_anual desc;
     
 -- Retorna a soma dos incêndios do ano em que ocorreu o maior número de incêndios, por estado
-select ano, sigla_estado, sum(numero) from incendios_estado where ano = (select ano from incendios_estado group by ano 
-having sum(numero) = (select sum(numero) as soma from incendios_estado group by ano order by soma desc limit 1)) group by sigla_estado;
+select ano, sigla_estado, sum(numero) from incendios where ano = (select ano from incendios group by ano 
+having sum(numero) = (select sum(numero) as soma from incendios group by ano order by soma desc limit 1)) group by sigla_estado;
