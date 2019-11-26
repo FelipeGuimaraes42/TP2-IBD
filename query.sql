@@ -159,6 +159,9 @@ GROUP BY bioma ORDER BY total_incendios;
 
 -- Consultas envolvendo funções de agregação sobre o resultado da junção de duas ou mais relações - 2
 
+-- Estado, mês e ano do número máximo de queimadas em apenas um mês:
+select estado, mes, ano, numero from incendios natural join estados where numero= (select max(numero) from incendios);
+
 -- Quantidade de estados que contem o Bioma X:
 select bioma, count(id_bioma) as estados_presentes from biomas_estados natural join biomas group by id_bioma order by estados_presentes desc;
 select biomas.bioma, count(biomas.id_bioma) as estados_presentes
@@ -200,5 +203,6 @@ select estado, round(avg(numero), 2) as media from estados natural join incendio
 SELECT regiao, ano, numero FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE regiao = "Norte" AND numero > (SELECT AVG(numero) FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE regiao = "Norte") GROUP BY ano ORDER BY ano;
 
 -- Consulta relatório - 3
--- Retorna os anos nos quais o numero de incêndios ocorridos na região Sudeste no mês de setembro, superou a marca de 1000 incêndios somente neste mês:
-SELECT regiao, ano, mes, numero FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE mes = "Setembro" AND regiao = "Sudeste" GROUP BY ano HAVING numero > 1000 ORDER BY ano;
+-- Retorna os anos nos quais o numero de incêndios ocorridos na região Sudeste no mês de setembro, superou a marca de 5000 incêndios somente neste mês:
+SELECT regiao, ano, mes, sum(numero) FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE mes LIKE "Setembro" AND regiao LIKE "Sudeste"
+ GROUP BY ano HAVING sum(numero) > 5000 ORDER BY ano;
