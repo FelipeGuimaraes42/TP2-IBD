@@ -10,10 +10,24 @@ h1{
 }
 table, th, tr{
     border-collapse: collapse;
-    width: 50%;
+    margin: 25px 0;
+    width: 40%;
     font-size: 20pt;
     color: aliceblue;
     text-align: left;
+}
+th{
+    background-color: teal;
+    font-weight: bold;
+    border: 1px solid aliceblue;
+    padding: 12px 12px;
+}
+td{
+    padding: 12px 12px;
+    border: 1px solid aliceblue;
+}
+tr{
+    border: 1px solid aliceblue;
 }
 .btn{
     font-family: arial;
