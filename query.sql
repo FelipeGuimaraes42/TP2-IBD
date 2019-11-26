@@ -198,3 +198,7 @@ select estado, round(avg(numero), 2) as media from estados natural join incendio
 -- Consutla do tipo 4, envolvendo funções de agregação sobre o resultado da junção de duas ou mais relações
 -- Anos no qual a região norte teve um número de queimadas maior do que sua média total de queimadas entre 1998 e 2017:
 SELECT regiao, ano, numero FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE regiao = "Norte" AND numero > (SELECT AVG(numero) FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE regiao = "Norte") GROUP BY ano ORDER BY ano;
+
+-- Consulta relatório - 3
+-- Retorna os anos nos quais o numero de incêndios ocorridos na região Sudeste no mês de setembro, superou a marca de 1000 incêndios somente neste mês:
+SELECT regiao, ano, mes, numero FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE mes = "Setembro" AND regiao = "Sudeste" GROUP BY ano HAVING numero > 1000 ORDER BY ano;
