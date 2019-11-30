@@ -30,7 +30,7 @@
             DBClose($link);
         ?><br/>
         <div>
-            <a href="interface.php" class="btn btn-aliceblue">Voltar</a>
+            <a href="index.php" class="btn btn-aliceblue">Voltar</a>
         </div>
 </body>
 </html>
