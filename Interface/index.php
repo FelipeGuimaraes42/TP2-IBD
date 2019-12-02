@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>TP2 IBD</title>
+        <title>TP2 IBD - Queimadas Brasileiras</title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
@@ -10,17 +10,17 @@
         <div>
             <h2>Introdução</h2>
             <p>
-            O território brasileiro está mudando, para pior. 
-	        Taxas de incêndio elevadas são um dos fatores preocupantes.
-            Esse site apresenta uma maneira simples de verificar dados disponibilizados pelo 
+            O território brasileiro está mudando, para <b>pior</b>. 
+	        Taxas de incêndio elevadas são apenas um dos fatores preocupantes.
+            Este site apresenta uma maneira simples de verificar dados de informações florestais disponibilizados pelo 
                 <a href="http://dados.gov.br/dataset/sistema-nacional-de-informacoes-florestais-snif" 
-                    target="_blank">governo</a>,
-	            relacioná-los com outras informações, como as regiões e biomas brasileiros,
-	            e os contrapor às suas ideias, para uma melhor compreensão da realidade
+                    target="_blank">governo</a> - datados de 1998 a 2017 -
+	            relacioná-los com outras informações - como as regiões e biomas brasileiros -
+	            e os contrapor às suas ideias, para uma melhor compreensão da realidade.
             </p>
         </div>
-        <div>
-            <h2>Consultas</h2>
+        <h2>Consultas</h2>
+        <div class="consultas">
             <div class="esquerda">
                 <div>
                     <a href="total_focos_ano.php" class="btn btn-aliceblue">Total de focos por ano</a>
