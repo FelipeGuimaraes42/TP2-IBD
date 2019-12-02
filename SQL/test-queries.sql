@@ -49,3 +49,19 @@ select bioma, format(avg(total_anual), 2) as media_anual, format(std(total_anual
             
 select estado, round(avg(numero), 2) as media from estados natural join incendios group by
 estado order by media desc limit 5;
+
+select bioma, ano, round(variance(numero), 2) as variancia from biomas
+natural join biomas_estados natural join estados natural join incendios where id_bioma = 3 group
+by ano;
+
+SELECT regiao, ano, sum(numero) AS total_anual FROM regioes NATURAL JOIN estados
+NATURAL JOIN incendios WHERE id_regiao = 3 GROUP BY ano having total_anual > ( SELECT
+AVG(total) FROM ( SELECT sum(numero) as total from regioes NATURAL JOIN estados
+NATURAL JOIN incendios WHERE id_regiao = 3 GROUP BY ano ) AS total_por_ano GROUP
+BY regiao ) ORDER BY ano;
+
+select avg(numero) from incendios natural join estados natural join regioes where regiao like 'Norte';
+
+SELECT estado, ano, SUM(numero) AS numero_de_incendios FROM estados
+NATURAL JOIN incendios WHERE (ano >= 2000 AND ano <= 2009) AND estado =
+'Amazonas' GROUP BY ano ORDER BY numero_de_incendios;
