@@ -40,13 +40,18 @@ tr{
     cursor: pointer;
     display:inline-block;
     text-decoration: none;
-}
-.btn-aliceblue{
+    text-align: center;
     background:aliceblue;
     color: black;
     box-shadow:0 5px 0 aliceblue;
     margin-top: 10px;
     margin-bottom: 20px;
+}
+.btn-aliceblue{
+    width: 250px;
+}
+.btn-aliceblue-voltar{
+    width: auto;    
 }
 .btn-aliceblue:hover{
   background: white;
@@ -56,4 +61,15 @@ figure{
     font-size: 15pt;
     color: aliceblue;
     /*text-align: center;*/
+}
+.esquerda{
+    float: left;
+    color: aliceblue;
+    width: 38%;
+    padding-left: 16%;
+}
+.direita{
+    float: right;
+    color: aliceblue;
+    width: 38%;
 }

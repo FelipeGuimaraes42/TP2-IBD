@@ -15,7 +15,8 @@
             require 'config.php';
             require 'connection.php';
             $link= DBConnect();
-            $sql= "select bioma, sum(numero) focos from biomas natural join biomas_estados natural join estados natural join incendios group by bioma order by focos desc";
+            $sql= "select bioma, sum(numero) focos from biomas natural join biomas_estados natural join estados 
+            natural join incendios group by bioma order by focos desc";
             $result= $link->query($sql);
             if($result->num_rows > 0){
                 while($row= $result-> fetch_assoc()){
@@ -28,7 +29,7 @@
             DBClose($link);
         ?><br/>
         <div>
-            <a href="index.php" class="btn btn-aliceblue">Voltar</a>
+            <a href="index.php" class="btn btn-aliceblue-voltar">Voltar</a>
         </div>
 </body>
 </html>

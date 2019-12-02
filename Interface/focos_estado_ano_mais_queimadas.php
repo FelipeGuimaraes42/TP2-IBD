@@ -2,25 +2,27 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Total Focos Por Ano</title>
+    <title>Total de Focos Por Estado do Ano Com Mais Queimadas</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <table>
         <tr>
-            <th>Focos de Incêndio</th>
             <th>Ano</th>
+            <th>Estado</th>
+            <th>Focos de Incêndio</th>
         </tr>
         <?php
             require 'config.php';
             require 'connection.php';
             $link= DBConnect();
-            $sql= "select ano, sum(numero) as numero_de_incendios from incendios group by ano order 
-                    by numero_de_incendios;";
+            $sql= "select ano, estado, sum(numero) as focos from incendios natural join estados where ano = (select ano
+            from incendios group by ano having sum(numero) = (select sum(numero) as soma from incendios
+            group by ano order by soma desc limit 1)) group by estado;";
             $result= $link->query($sql);
             if($result->num_rows > 0){
                 while($row= $result-> fetch_assoc()){
-                    echo "<tr><td>". $row["numero_de_incendios"]. "</td><td>". $row["ano"]. "</td></tr>";
+                    echo "<tr><td>". $row["ano"]. "</td><td>". $row["estado"]. "</td><td>". $row["focos"]. "</td></tr>";
                 }
                 echo "</table>";
             }else{

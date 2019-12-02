@@ -28,3 +28,24 @@ select estado, sum(numero) as soma from incendios natural join estados group by 
 select estado, bioma, numero from biomas natural join biomas_estados natural join estados natural join incendios where numero>100;
 select bioma, sum(numero) focos from biomas natural join biomas_estados natural join estados natural join incendios 
 	group by bioma order by focos desc;
+
+select regiao, sum(numero) as c from estados natural join regioes natural join biomas_estados 
+            natural join biomas natural join incendios group by regiao order by c desc;
+            
+select ano, estado, sum(numero) from incendios natural join estados where ano = (select ano
+from incendios group by ano having sum(numero) = (select sum(numero) as soma from incendios
+group by ano order by soma desc limit 1)) group by estado;
+
+select mes, sum(numero) as numero_de_incendios from incendios where numero>0 group by
+mes;
+
+select estado, mes, ano, numero from incendios natural join estados where numero= (select
+max(numero) from incendios);
+
+select bioma, format(avg(total_anual), 2) as media_anual, format(std(total_anual), 2) as dev_pad_anual from ( select
+            bioma, sum(numero) as total_anual from ( select id_bioma, bioma from biomas ) as biomas natural
+            join biomas_estados natural join incendios group by bioma, ano ) as agp_anual group by bioma
+            order by media_anual desc;
+            
+select estado, round(avg(numero), 2) as media from estados natural join incendios group by
+estado order by media desc limit 5;

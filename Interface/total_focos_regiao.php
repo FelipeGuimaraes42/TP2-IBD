@@ -2,25 +2,25 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Total Focos Por Ano</title>
+    <title>Total Focos Por Região</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <table>
         <tr>
+            <th>Região</th>
             <th>Focos de Incêndio</th>
-            <th>Ano</th>
         </tr>
         <?php
             require 'config.php';
             require 'connection.php';
             $link= DBConnect();
-            $sql= "select ano, sum(numero) as numero_de_incendios from incendios group by ano order 
-                    by numero_de_incendios;";
+            $sql= "select regiao, sum(numero) as c from estados natural join regioes natural join biomas_estados 
+            natural join biomas natural join incendios group by regiao order by c desc;";
             $result= $link->query($sql);
             if($result->num_rows > 0){
                 while($row= $result-> fetch_assoc()){
-                    echo "<tr><td>". $row["numero_de_incendios"]. "</td><td>". $row["ano"]. "</td></tr>";
+                    echo "<tr><td>". $row["regiao"]. "</td><td>". $row["c"]. "</td></tr>";
                 }
                 echo "</table>";
             }else{
