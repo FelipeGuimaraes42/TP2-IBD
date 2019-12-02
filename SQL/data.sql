@@ -49,6 +49,13 @@ insert into regioes(regiao, img_regiao) values ('Nordeste', load_file("C:\\wamp6
 insert into regioes(regiao, img_regiao) values ('Norte', load_file("C:\\wamp64\\www\\TP2-IBD\\Interface\\Images\\regiao-norte.jpg"));
 insert into regioes(regiao, img_regiao) values ('Sudeste', load_file("C:\\wamp64\\www\\TP2-IBD\\Interface\\Images\\regiao-sudeste.jpg"));
 insert into regioes(regiao, img_regiao) values ('Sul', load_file("C:\\wamp64\\www\\TP2-IBD\\Interface\\Images\\regiao-sul.jpg"));
+
+/* Caso os caminhos acima não funcionarem, colocar as imagens na pasta tmp como descrita abaixo e rodar estes updates:
+update regioes set img_regiao= load_file("C:\\wamp64\\tmp\\regiao-centro-oeste.jpg") where id_regiao= 1;
+update regioes set img_regiao= load_file("C:\\wamp64\\tmp\\regiao-nordeste.jpg") where id_regiao= 2;
+update regioes set img_regiao= load_file("C:\\wamp64\\tmp\\regiao-norte.jpg") where id_regiao= 3;
+update regioes set img_regiao= load_file("C:\\wamp64\\tmp\\regiao-sudeste.jpg") where id_regiao= 4;
+update regioes set img_regiao= load_file("C:\\wamp64\\tmp\\regiao-sul.jpg") where id_regiao= 5;
 /**/
 
 -- Insere os dados referentes aos estados, salvos em um CSV, na tabela estados
@@ -85,6 +92,14 @@ insert into biomas (bioma, img_bioma) values ('Cerrado', load_file("C:\\wamp64\\
 insert into biomas (bioma, img_bioma) values ('Mata Atlântica', load_file("C:\\wamp64\\www\\TP2-IBD\\Interface\\Images\\mata-atlantica.jpg"));
 insert into biomas (bioma, img_bioma) values ('Pampa', load_file("C:\\wamp64\\www\\TP2-IBD\\Interface\\Images\\pampas.jpg"));
 insert into biomas (bioma, img_bioma) values ('Pantanal', load_file("C:\\wamp64\\www\\TP2-IBD\\Interface\\Images\\pantanal.jpg"));
+
+/* Caso os caminhos acima não funcionarem, colocar as imagens na pasta tmp como descrita abaixo e rodar estes updates:
+update biomas set img_bioma= load_file("C:\\wamp64\\tmp\\amazonia.jpg") where id_bioma= 1;
+update biomas set img_bioma= load_file("C:\\wamp64\\tmp\\caatinga.jpg") where id_bioma= 2;
+update biomas set img_bioma= load_file("C:\\wamp64\\tmp\\cerrado.jpg") where id_bioma= 3;
+update biomas set img_bioma= load_file("C:\\wamp64\\tmp\\mata-atlantica.jpg") where id_bioma= 4;
+update biomas set img_bioma= load_file("C:\\wamp64\\tmp\\pampas.jpg") where id_bioma= 5;
+update biomas set img_bioma= load_file("C:\\wamp64\\tmp\\pantanal.jpg") where id_bioma= 6;
 /**/
 
 -- Insere os dados relacionados, salvos previamente em um CSV, na tabela estados_bioma
