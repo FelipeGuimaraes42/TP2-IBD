@@ -12,7 +12,7 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
 </HEAD>
 <BODY>
-    <h1>Imagens dos Biomas</H1>
+    <h2 class="h2-tabela">Imagens dos Biomas</h2>
     <?php
         while($row = mysqli_fetch_array($result)) {
     ?>
@@ -25,8 +25,8 @@
         }
         DBClose($link);
     ?><br/>
-    <div>
-        <a href="index.php" class="btn btn-aliceblue">Voltar</a>
+    <div class="h2-tabela">
+        <a href="javascript:history.back()" class="btn btn-aliceblue-voltar">Voltar</a>
     </div>
 </BODY>
 </HTML>

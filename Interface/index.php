@@ -19,6 +19,15 @@
 	            e os contrapor às suas ideias, para uma melhor compreensão da realidade.
             </p>
         </div>
+        <div>
+            <h2>Gráficos</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            
+            <img src="Graficos/incendios_ano.png" alt="Incêndios por Ano" width=400px heigth=400px />
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <img src="Graficos/incendios_bioma.png" alt="Incêndios por Bioma" width=400px heigth=400px />
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <img src="Graficos/incendios_regiao.png" alt="Incêndios por Região" width=400px heigth=400px />
+        </div>
         <h2>Consultas</h2>
         <div class="consultas">
             <div class="esquerda">

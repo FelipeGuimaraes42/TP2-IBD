@@ -15,6 +15,9 @@ h2{
     font-size: 30pt;
     font-weight: 900;
 }
+.h2-tabela{
+    text-align: center;
+}
 p{
     color: aliceblue;
     font-size: 30pt;
@@ -23,11 +26,16 @@ p{
 }
 table, th, tr{
     border-collapse: collapse;
-    margin: 25px 0;
-    width: 40%;
+    width: auto;
     font-size: 20pt;
     color: aliceblue;
     text-align: left;
+}
+table{
+    margin: auto;
+}
+th, tr{
+    margin: 25px 0;
 }
 th{
     background-color: teal;
@@ -73,7 +81,9 @@ tr{
 figure{
     font-size: 15pt;
     color: aliceblue;
-    /*text-align: center;*/
+    text-align: center;
+    display: inline-block;
+    width: auto;
 }
 .consultas{
     padding-right: 2%;

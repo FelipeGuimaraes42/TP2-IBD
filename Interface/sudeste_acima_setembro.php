@@ -2,15 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Focos no Sudeste Acima de 5000</title>
+    <title>Número de Queimadas no Sudeste Acima de 5000</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <h2 class="h2-tabela">Número de Queimadas no Sudeste em Setembro Acima de 5000 </h2></br>
     <table>
         <tr>
-            <th>Focos Incêncio</th>
-            <th>Mês</th>
             <th>Ano</th>
+            <th>Mês</th>
+            <th>Focos Incêncio</th>
         </tr>
         <?php
             require 'config.php';
@@ -22,8 +23,8 @@
             $result= $link->query($sql);
             if($result->num_rows > 0){
                 while($row= $result-> fetch_assoc()){
-                    echo "<tr><td>". $row["soma"]. "</td><td>".
-                     $row["mes"]. "</td><td>". $row["ano"]."</td></tr>";
+                    echo "<tr><td>". $row["ano"]. "</td><td>".
+                     $row["mes"]. "</td><td>". $row["soma"]."</td></tr>";
                 }
                 echo "</table>";
             }else{
@@ -31,8 +32,8 @@
             }
             DBClose($link);
         ?><br/>
-        <div>
-            <a href="index.php" class="btn btn-aliceblue-voltar">Voltar</a>
+        <div class="h2-tabela">
+            <a href="javascript:history.back()" class="btn btn-aliceblue-voltar">Voltar</a>
         </div>
 </body>
 </html>

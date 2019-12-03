@@ -2,10 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Total Focos Por Bioma</title>
+    <title>Número de Focos de Incêndio Por Bioma</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <h2 class="h2-tabela">Número de Focos de Incêndio Por Bioma</h2></br>
     <table>
         <tr>
             <th>Bioma</th>
@@ -28,8 +29,8 @@
             }
             DBClose($link);
         ?><br/>
-        <div>
-            <a href="index.php" class="btn btn-aliceblue-voltar">Voltar</a>
+        <div class="h2-tabela">
+            <a href="javascript:history.back()" class="btn btn-aliceblue-voltar">Voltar</a>
         </div>
 </body>
 </html>

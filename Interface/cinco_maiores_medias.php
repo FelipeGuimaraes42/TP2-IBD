@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <h2 class="h2-tabela">Cinco Estados com a Maior Média de Focos de Incêndios</h2></br>
     <table>
         <tr>
             <th>Estado</th>
@@ -30,8 +31,8 @@
             }
             DBClose($link);
         ?><br/>
-        <div>
-            <a href="index.php" class="btn btn-aliceblue-voltar">Voltar</a>
+        <div class="h2-tabela">
+            <a href="javascript:history.back()" class="btn btn-aliceblue-voltar">Voltar</a>
         </div>
 </body>
 </html>
