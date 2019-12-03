@@ -48,7 +48,33 @@ select estado, round(avg(numero), 2) as media
 -- Consultas envolvendo a junção de três ou mais relações - 3
 
 -- Total de focos de incêndio de cada região
-select regiao, sum(numero) as c from estados natural join regioes natural join biomas_estados natural join biomas natural join incendios group by regiao order by c desc;
+select regiao, sum(numero) as c from estados natural join regioes natural join incendios group by regiao order by c desc;
+-- Mesma consulta, com indexes e so somando numeros diferentes de zero
+create index idx_sig_est on estados(sigla_estado); 
+create index idx_est_id_reg on estados(id_regiao); 
+create index idx_id_reg on regioes(id_regiao); 
+create index idx_inc_sig_est on incendios(sigla_estado); 
+select regiao, sum(numero) as c  
+	from ( 
+		select sigla_estado, id_regiao 
+			from estados 
+			use index (idx_sig_est, idx_est_id_reg) 
+	) as estados natural join ( 
+		select id_regiao, regiao 
+			from regioes  
+            use index(idx_id_reg) 
+	) as regioes natural join ( 
+		select sigla_estado, numero 
+			from incendios  
+            use index (idx_inc_sig_est) 
+	) as incendios 
+    where numero <> 0 
+    group by regiao 
+    order by c desc; 
+drop index idx_sig_est on estados; 
+drop index idx_est_id_reg on estados; 
+drop index idx_id_reg on regioes; 
+drop index idx_inc_sig_est on incendios; 
 
 -- Dado um Bioma, determinar o número de focos de incendios ocorridos naquele Bioma, no período de 1998 à 2017;
 SELECT bioma, SUM(numero) AS total_incendios FROM biomas NATURAL JOIN biomas_estados NATURAL JOIN estados NATURAL JOIN incendios 
