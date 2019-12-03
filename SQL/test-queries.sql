@@ -42,7 +42,7 @@ mes;
 select estado, mes, ano, numero from incendios natural join estados where numero= (select
 max(numero) from incendios);
 
-select bioma, format(avg(total_anual), 2) as media_anual, format(std(total_anual), 2) as dev_pad_anual from ( select
+select bioma, round(avg(total_anual), 2) as media_anual, round(std(total_anual), 2) as dev_pad_anual from ( select
             bioma, sum(numero) as total_anual from ( select id_bioma, bioma from biomas ) as biomas natural
             join biomas_estados natural join incendios group by bioma, ano ) as agp_anual group by bioma
             order by media_anual desc;
@@ -65,3 +65,6 @@ select avg(numero) from incendios natural join estados natural join regioes wher
 SELECT estado, ano, SUM(numero) AS numero_de_incendios FROM estados
 NATURAL JOIN incendios WHERE (ano >= 2000 AND ano <= 2009) AND estado =
 'Amazonas' GROUP BY ano ORDER BY numero_de_incendios;
+
+SELECT regiao, ano, mes, sum(numero) FROM regioes NATURAL JOIN estados NATURAL JOIN incendios WHERE mes LIKE "Setembro" AND regiao LIKE "Sudeste"
+ GROUP BY ano HAVING sum(numero) > 5000 ORDER BY ano;

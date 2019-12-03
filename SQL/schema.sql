@@ -1,10 +1,10 @@
--- drop schema tp2;-- Cria o Esquema referente ao TP2
+-- Cria o Esquema referente ao TP2
 create schema if not exists tp2
 default character set utf8
 default collate utf8_general_ci;
 use tp2;
 
--- drop table regioes;-- Cria a tabela para armazenar as regiões brasileiras
+-- Cria a tabela para armazenar as regiões brasileiras
 create table if not exists regioes(
 	id_regiao integer auto_increment,
     regiao varchar(13) not null,
@@ -12,7 +12,7 @@ create table if not exists regioes(
     primary key (id_regiao)
 )default charset= utf8;
 
--- drop table estados;-- Cria a tabela que armazena os estados brasileiros
+-- Cria a tabela que armazena os estados brasileiros
 create table if not exists estados(
 	sigla_estado char(2),
     estado varchar(19) not null,
@@ -21,7 +21,7 @@ create table if not exists estados(
     primary key (sigla_estado)
 )default charset= utf8;
 
--- drop table biomas;-- Cria a tabela que armazena os biomas brasileiros
+-- Cria a tabela que armazena os biomas brasileiros
 create table if not exists biomas(
 	id_bioma integer auto_increment,
     bioma varchar(15) not null,
@@ -29,7 +29,7 @@ create table if not exists biomas(
     primary key (id_bioma)
 )default charset= utf8;
 
--- drop table biomas_estados;-- Cria a tabela que armazena as relações entre os biomas e estados, necessária pois é uma relação n-m
+-- Cria a tabela que armazena as relações entre os biomas e estados, necessária pois é uma relação n-m
 create table if not exists biomas_estados(
 	sigla_estado char(2),
     id_bioma integer,
@@ -38,7 +38,7 @@ create table if not exists biomas_estados(
     foreign key (id_bioma) references biomas(id_bioma)
 )default charset= utf8;
 
--- drop table incendios;-- Cria a tabela que armazena os incêndios em cada estado
+-- Cria a tabela que armazena os incêndios em cada estado
 create table if not exists incendios(
 	id_inc_est integer auto_increment not null,
     ano integer not null,
