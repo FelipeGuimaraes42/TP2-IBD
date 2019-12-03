@@ -21,7 +21,7 @@
         </div>
         <div>
             <h2>Gráficos</h2>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <img src="Graficos/incendios_ano.png" alt="Incêndios por Ano" width=400px heigth=400px />
             &nbsp;&nbsp;&nbsp;&nbsp;
             <img src="Graficos/incendios_bioma.png" alt="Incêndios por Bioma" width=400px heigth=400px />
