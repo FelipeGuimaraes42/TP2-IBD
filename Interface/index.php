@@ -20,6 +20,19 @@
             </h3>
         </div>
         <div>
+            <h2>Autores</h2>
+            <h3>Alexander Thomas Mol
+            <a href="https://github.com/Yowgf" target="_blank"><img src="Images/git.png" width=50px height=50px/></a><br/><br/>
+            Celso Junio Simões
+            <a href="https://github.com/CelsoSimoes" target="_blank"><img src="Images/git.png" width=50px height=50px/></a><br/><br/>
+            Felipe Matheus Guimarães
+            <a href="https://github.com/FelipeGuimaraes42" target="_blank"><img src="Images/git.png" width=50px height=50px/></a><br/><br/>
+            Matheus Ferreira Coelho
+            <a href="https://github.com/mathelho" target="_blank"><img src="Images/git.png" width=50px height=50px/></a><br/><br/>
+            Página do GitHub com o Projeto 
+            <a href="https://github.com/FelipeGuimaraes42/TP2-IBD" target="_blank"><img src="Images/git.png" width=50px height=50px/></a><br/>
+        </div>
+        <div>
             <h2>Gráficos</h2>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <img src="Graficos/incendios_ano.png" alt="Incêndios por Ano" width=400px heigth=400px />
