@@ -22,9 +22,28 @@ select biomas.bioma, count(biomas.id_bioma) as estados_presentes
     
 -- Estado, mês e ano do número máximo de queimadas em apenas um mês:
 select estado, mes, ano, numero from incendios natural join estados where numero= (select max(numero) from incendios);
+select estado, mes, ano, numero
+	from incendios as inc1 natural join estados
+	where not exists (
+		select numero
+		from incendios as inc2
+        where inc2.numero > inc1.numero
+	);
 
 -- 5 estados com maior média de queimadas por mes
 select estado, round(avg(numero), 2) as media from estados natural join incendios group by estado order by media desc limit 5;
+-- Mesma consulta, mas com produto cartesiano e somente as colunas utilizadas
+select estado, round(avg(numero), 2) as media
+	from (
+		select sigla_estado, estado
+			from estados
+	) natural join (
+		select sigla_estado, numero
+			from incendios
+    ) as inc
+    where estados.sigla_estado = inc.sigla_estado
+    group by estado
+    order by media desc limit 5;
 
 -- Consultas envolvendo a junção de três ou mais relações - 3
 
