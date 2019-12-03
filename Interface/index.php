@@ -10,7 +10,7 @@
         <div>
             <h2>Introdução</h2>
             <h3>
-            O território brasileiro está mudando, para <b>pior</b>. 
+            O território brasileiro está mudando, para pior. 
 	        Taxas de incêndio elevadas são apenas um dos fatores preocupantes.
             Este site apresenta uma maneira simples de verificar dados de informações florestais disponibilizados pelo 
                 <a href="http://dados.gov.br/dataset/sistema-nacional-de-informacoes-florestais-snif" 
