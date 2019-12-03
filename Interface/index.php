@@ -9,7 +9,7 @@
         <h1>Queimadas no Brasil</h1>
         <div>
             <h2>Introdução</h2>
-            <p>
+            <h3>
             O território brasileiro está mudando, para <b>pior</b>. 
 	        Taxas de incêndio elevadas são apenas um dos fatores preocupantes.
             Este site apresenta uma maneira simples de verificar dados de informações florestais disponibilizados pelo 
@@ -17,7 +17,7 @@
                     target="_blank">governo</a> - datados de 1998 a 2017 -
 	            relacioná-los com outras informações - como as regiões e biomas brasileiros -
 	            e os contrapor às suas ideias, para uma melhor compreensão da realidade.
-            </p>
+            </h3>
         </div>
         <div>
             <h2>Gráficos</h2>
